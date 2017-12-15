@@ -30,31 +30,31 @@ User Function CalcImps()
 
 	//Inicia o processo de calculo da MatxFis, gerando um array do Cabecalho do Documento Fisca/
 	MaFisIni(	M->C5_CLIENTE,;			     		// 1-Codigo Cliente/Fornecedor
-	M->C5_LOJACLI,;			     		// 2-Loja do Cliente/Fornecedor
-	IIf(M->C5_TIPO $ 'DB', "F", "C"),;	// 3-C:Cliente , F:Fornecedor
-	M->C5_TIPO,;				     	// 4-Tipo da NF
-	M->C5_TIPOCLI,;			     		// 5-Tipo do Cliente/Fornecedor
-	aRelImp,;					     	// 6-Relacao de Impostos que suportados no arquivo
-	,;						   	     	// 7-Tipo de complemento
-	,;							     	// 8-Permite Incluir Impostos no Rodape .T./.F.
-	"SB1",;					     		// 9-Alias do Cadastro de Produtos - ("SBI" P/ Front Loja)
-	"MATA461")					     	// 10-Nome da rotina que esta utilizando a funcao
+			M->C5_LOJACLI,;			     		// 2-Loja do Cliente/Fornecedor
+			IIf(M->C5_TIPO $ 'DB', "F", "C"),;		// 3-C:Cliente , F:Fornecedor
+			M->C5_TIPO,;				     	// 4-Tipo da NF
+			M->C5_TIPOCLI,;			     		// 5-Tipo do Cliente/Fornecedor
+			aRelImp,;				     	// 6-Relacao de Impostos que suportados no arquivo
+			,;				   	     	// 7-Tipo de complemento
+			,;					     	// 8-Permite Incluir Impostos no Rodape .T./.F.
+			"SB1",;				     		// 9-Alias do Cadastro de Produtos - ("SBI" P/ Front Loja)
+			"MATA461")				     	// 10-Nome da rotina que esta utilizando a funcao
 
 	//Inclui um novo item ao array aNFItem da MatxFis, disparando o calculo das bases e impostos
-	MaFisAdd(	aCols[n][nPosPrd],; 	  		// 1-Codigo do Produto ( Obrigatorio )
-	aCols[n][nPosTes],;							// 2-Codigo do TES ( Opcional )
-	aCols[n][nPosQtVen],;	  					// 3-Quantidade ( Obrigatorio )
-	aCols[n][nPosPrUnt],;	  					// 4-Preco Unitario ( Obrigatorio )
-	aCols[n][nPosVDes],;    					// 5-Valor do Desconto ( Opcional )
-	,;		            						// 6-Numero da NF Original ( Devolucao/Benef )
-	,;		            						// 7-Serie da NF Original ( Devolucao/Benef )
-	0,;			        						// 8-RecNo da NF Original no arq SD1/SD2
-	0,;											// 9-Valor do Frete do Item ( Opcional )
-	0,;											// 10-Valor da Despesa do item ( Opcional )
-	0,;            								// 11-Valor do Seguro do item ( Opcional )
-	0,;											// 12-Valor do Frete Autonomo ( Opcional )
-	(aCols[n][nPosVlr]+aCols[n][nPosVDes]),;	// 13-Valor da Mercadoria ( Obrigatorio )
-	0)											// 14-Valor da Embalagem ( Opiconal )
+	MaFisAdd(	aCols[n][nPosPrd],; 	  			// 1-Codigo do Produto ( Obrigatorio )
+			aCols[n][nPosTes],;				// 2-Codigo do TES ( Opcional )
+			aCols[n][nPosQtVen],;	  			// 3-Quantidade ( Obrigatorio )
+			aCols[n][nPosPrUnt],;	  			// 4-Preco Unitario ( Obrigatorio )
+			aCols[n][nPosVDes],;    			// 5-Valor do Desconto ( Opcional )
+			,;		            			// 6-Numero da NF Original ( Devolucao/Benef )
+			,;		            			// 7-Serie da NF Original ( Devolucao/Benef )
+			0,;						// 8-RecNo da NF Original no arq SD1/SD2
+			0,;						// 9-Valor do Frete do Item ( Opcional )
+			0,;						// 10-Valor da Despesa do item ( Opcional )
+			0,;            					// 11-Valor do Seguro do item ( Opcional )
+			0,;						// 12-Valor do Frete Autonomo ( Opcional )
+			(aCols[n][nPosVlr]+aCols[n][nPosVDes]),;	// 13-Valor da Mercadoria ( Obrigatorio )
+			0)						// 14-Valor da Embalagem ( Opiconal )
 
 	//Atribui aos campos de aliquotas de ICMS e IPI, os valores de porcentagem do ICMS e IPI
 	aCols[n][nPosAlICM] := MaFisRet(1, "IT_ALIQICM")
